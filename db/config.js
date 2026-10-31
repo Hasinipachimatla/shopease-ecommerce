@@ -7,9 +7,9 @@ const pool = new Pool({
   database: process.env.PG_DATABASE || 'shopease_db',
   user: process.env.PG_USER || 'postgres',
   password: process.env.PG_PASSWORD || '',
-  max: 20,
+  max: parseInt(process.env.PG_POOL_MAX || '20', 10),
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 5000,
+  connectionTimeoutMillis: parseInt(process.env.PG_CONNECTION_TIMEOUT || '4000', 10),
 });
 
 pool.on('error', (err) => {

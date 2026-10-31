@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/components.css" />
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/reliability-lab.css" />
 </head>
 <body>
 
@@ -76,8 +77,14 @@
           </div>
         </div>
 
-        <!-- Header Actions: Orders, Wishlist, Cart -->
+        <!-- Header Actions: Reliability Lab, Orders, Wishlist, Cart -->
         <nav class="header-actions" aria-label="Customer Navigation">
+          <button type="button" class="lab-nav-btn" id="lab-open-btn" title="Open System Reliability Lab (Fault Injection & Telemetry)">
+            <span class="lab-active-dot" id="lab-active-dot"></span>
+            <span>🛠️ Reliability Lab</span>
+            <span id="lab-active-count" style="font-size: 0.72rem; font-weight: 800; padding-left: 2px;">Normal</span>
+          </button>
+
           <button type="button" class="action-btn-item" id="orders-btn" title="View Past Orders">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -524,11 +531,69 @@
     </div>
   </div>
 
+  <!-- ================= 5. SYSTEM RELIABILITY LAB MODAL ================= -->
+  <div class="lab-modal-overlay" id="lab-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="lab-modal-container">
+      
+      <!-- Lab Header -->
+      <div class="lab-header">
+        <div class="lab-header-title">
+          <span style="font-size: 1.5rem;">🛠️</span>
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: #f8fafc; letter-spacing: -0.02em;">
+              System Reliability Lab
+            </div>
+            <div style="font-size: 0.75rem; color: #94a3b8;">
+              Controlled Fault Injection & Observability Environment for AI Production Incident Investigator
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-quick-actions">
+          <span class="lab-badge-indicator healthy" id="lab-health-pill">
+            <span>●</span> HEALTHY (0 Faults Active)
+          </span>
+
+          <button type="button" class="btn btn-sm" id="lab-btn-refresh" style="background: #334155; color: #f8fafc; font-size: 0.8rem;">
+            🔄 Refresh Metrics
+          </button>
+
+          <button type="button" class="btn btn-sm" id="lab-btn-reset-all" style="background: #e11d48; color: #ffffff; font-weight: 800; font-size: 0.8rem;">
+            🛡️ Reset All Faults
+          </button>
+
+          <button type="button" class="btn-icon" id="lab-close-btn" aria-label="Close Lab" style="background: #1e293b; color: #f8fafc; border: 1px solid #475569;">✕</button>
+        </div>
+      </div>
+
+      <!-- Warning Banner -->
+      <div class="lab-warning-banner">
+        <span>⚠️ <strong>LOCAL TEST LAB:</strong> Fault injection actively alters local PostgreSQL pool, cache state, latency, and circuit breakers for AI automated testing.</span>
+        <span style="font-size: 0.75rem; opacity: 0.85;">Environment: Development</span>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="lab-tabs-bar">
+        <button type="button" class="lab-tab-btn active" data-tab="scenarios">⚡ Fault Scenarios (5)</button>
+        <button type="button" class="lab-tab-btn" data-tab="metrics">📊 Live Metrics (JSON)</button>
+        <button type="button" class="lab-tab-btn" data-tab="logs">📜 Structured Logs</button>
+        <button type="button" class="lab-tab-btn" data-tab="services">🌐 Services Topology</button>
+      </div>
+
+      <!-- Lab Tab Content Container -->
+      <div class="lab-body" id="lab-tab-content">
+        <!-- Rendered dynamically by reliability-lab.js -->
+      </div>
+
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container" aria-live="polite"></div>
 
-  <!-- Script Module -->
+  <!-- Script Modules -->
   <script type="module" src="/js/app.js"></script>
+  <script type="module" src="/js/reliability-lab.js"></script>
 
 </body>
 </html>
