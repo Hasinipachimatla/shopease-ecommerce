@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase - Indian Lifestyle & Fashion Marketplace | Meesho Inspired Catalogue</title>
+  <meta name="description" content="ShopEase is India's favourite lifestyle and fashion marketplace inspired by Meesho. Discover ethnic sarees, jewellery, beauty products, indoor plants, DIY craft kits and home decor at direct supplier prices with Free Delivery & Cash on Delivery." />
+  <meta name="keywords" content="ShopEase, Meesho, Indian fashion, ethnic wear, kurti, jewellery, jhumkas, beauty, kumkumadi oil, plants, DIY crafts, home decor, online shopping India, COD" />
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="ShopEase - Indian Lifestyle & Fashion Marketplace" />
+  <meta property="og:description" content="Direct from Indian weavers and artisans. Enjoy Free Delivery, Lowest Prices & 7-Day Easy Returns." />
+  <meta property="og:type" content="website" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- 1. Top Announcement Marquee Bar -->
+  <aside class="announcement-bar" id="announcement-bar">
+    <div class="container" style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+      <span>🎉 <strong>Indian Festive Mela:</strong> Extra ₹100 OFF on First Order with code <span class="coupon-code">WELCOME100</span></span>
+      <span style="opacity: 0.7;">|</span>
+      <span>🚚 <strong>100% Free Delivery</strong> Across All 28,000+ Pincodes in India</span>
+      <span style="opacity: 0.7;">|</span>
+      <span>💵 <strong>Cash on Delivery (COD)</strong> Available</span>
+    </div>
+  </aside>
+
+  <!-- 2. Main Sticky Header -->
+  <header class="main-header" id="main-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo" id="brand-logo" aria-label="ShopEase Home">
+          <div class="logo-icon-wrap">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div class="logo-text-wrap">
+            <span class="logo-title">ShopEase</span>
+            <span class="logo-subtitle">Lifestyle & Fashion</span>
+          </div>
+        </a>
+
+        <!-- Search Bar with Live Debounced Filter -->
+        <div class="header-search" id="header-search-container">
+          <div class="search-input-group">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search Kurtis, Oxidised Jhumkas, Saffron Oil, Monstera, Resin Art..." 
+              autocomplete="off"
+            />
+            <button type="button" class="search-clear-btn" id="search-clear-btn" aria-label="Clear Search">✕</button>
+          </div>
+          <div class="quick-tags" id="quick-tags-container">
+            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">Popular:</span>
+            <span class="quick-tag-chip" data-query="Kurta">Anarkali Kurtis</span>
+            <span class="quick-tag-chip" data-query="Jhumkas">Silver Jhumkas</span>
+            <span class="quick-tag-chip" data-query="Kumkumadi">Kumkumadi Oil</span>
+            <span class="quick-tag-chip" data-query="Snake Plant">Snake Plant</span>
+            <span class="quick-tag-chip" data-query="Resin Art">Resin Kit</span>
+            <span class="quick-tag-chip" data-query="Brass Urli">Urli Bowl</span>
+          </div>
+        </div>
+
+        <!-- Header Actions: Orders, Wishlist, Cart -->
+        <nav class="header-actions" aria-label="Customer Navigation">
+          <button type="button" class="action-btn-item" id="orders-btn" title="View Past Orders">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <span>My Orders</span>
+          </button>
+
+          <button type="button" class="action-btn-item" id="wishlist-btn" title="View Wishlist">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="action-badge" id="wishlist-badge" style="display: none;">0</span>
+            <span>Wishlist</span>
+          </button>
+
+          <button type="button" class="action-btn-item" id="cart-btn" title="View Shopping Cart">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="action-badge" id="cart-badge" style="display: none;">0</span>
+            <span>Cart</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Category Horizontal Pills / Story Navigation -->
+  <nav class="category-nav-bar" id="category-nav-bar" aria-label="Product Categories">
+    <div class="container">
+      <ul class="category-nav-list" id="category-nav-list">
+        <!-- Injected via JavaScript from backend PostgreSQL categories -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main id="main-content">
+    
+    <!-- 4. Hero Promotional Banner (Meesho Inspired) -->
+    <section class="hero-section" id="hero-banner">
+      <div class="container">
+        <div class="hero-banner-card">
+          <div class="hero-banner-content">
+            <div class="hero-pill">
+              <span>🌸 Desi Festive Lifestyle Mela 2026</span>
+            </div>
+            <h1 class="hero-title">
+              Indian Lifestyle & Fashion Marketplace
+            </h1>
+            <p class="hero-subtitle">
+              Shop directly from verified Indian weavers, artisans & creators. Explore 36+ curated lifestyle picks with zero delivery charges and lowest prices!
+            </p>
+            <div class="hero-actions">
+              <a href="#catalog-section" class="btn btn-secondary btn-lg" style="background: #ffffff; color: var(--primary); font-weight: 700;">
+                Shop Catalogue
+              </a>
+              <button type="button" class="btn btn-outline btn-lg" style="color: #ffffff; border-color: rgba(255,255,255,0.4);" onclick="document.getElementById('search-input').focus()">
+                🔍 Search Products
+              </button>
+            </div>
+            <div class="hero-features">
+              <div class="hero-feature-item"><span>🚚</span> Free Delivery Pan-India</div>
+              <div class="hero-feature-item"><span>💵</span> Cash on Delivery</div>
+              <div class="hero-feature-item"><span>🔄</span> 7-Day Easy Return</div>
+            </div>
+          </div>
+
+          <div class="hero-banner-graphics">
+            <div class="hero-discount-circle">
+              <span class="save-text">Up to</span>
+              <span class="save-percent">66%</span>
+              <span class="save-sub">OFF M.R.P.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Trust Guarantee Bar -->
+    <section class="container" aria-label="Customer Guarantees">
+      <div class="trust-bar">
+        <div class="trust-bar-grid">
+          <div class="trust-item">
+            <div class="trust-icon-box">🚚</div>
+            <div class="trust-info">
+              <h4>100% Free Delivery</h4>
+              <p>On all orders with no minimum spend</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">💵</div>
+            <div class="trust-info">
+              <h4>Cash on Delivery</h4>
+              <p>Pay cash or UPI upon doorstep delivery</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">🔄</div>
+            <div class="trust-info">
+              <h4>7 Days Easy Return</h4>
+              <p>Quick instant refund & replacement</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">🛡️</div>
+            <div class="trust-info">
+              <h4>Lowest Wholesale Prices</h4>
+              <p>Direct from verified Indian suppliers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Products Catalogue Layout (Sidebar Filters + Main Grid) -->
+    <section class="catalogue-section" id="catalog-section">
+      <div class="container">
+        <div class="catalogue-layout">
+          
+          <!-- Sidebar Filters -->
+          <aside class="filters-sidebar" id="filters-sidebar">
+            <div class="filter-header-row">
+              <h3>Filters</h3>
+              <button type="button" class="clear-filters-btn" id="clear-filters-btn">Reset All</button>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="filter-group">
+              <h4 class="filter-title">Categories</h4>
+              <div class="category-radio-list" id="category-radio-group">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div class="filter-group">
+              <h4 class="filter-title">Max Price (INR)</h4>
+              <input 
+                type="range" 
+                id="price-slider" 
+                class="price-range-slider" 
+                min="200" 
+                max="3000" 
+                step="50" 
+                value="3000" 
+              />
+              <div class="price-labels">
+                <span>₹200</span>
+                <span id="price-max-label" style="color: var(--primary); font-weight: 800;">₹3,000</span>
+              </div>
+            </div>
+
+            <!-- In Stock Filter -->
+            <div class="filter-group">
+              <label class="filter-radio-label">
+                <input type="checkbox" id="stock-filter-checkbox" />
+                <span style="font-weight: 600;">In Stock Only</span>
+              </label>
+            </div>
+
+            <!-- Quality Assured Badge -->
+            <div style="background: #fdf2f8; border: 1px dashed var(--primary-border); border-radius: 8px; padding: 0.85rem; font-size: 0.8rem; color: var(--primary);">
+              <strong>🌟 ShopEase Guarantee:</strong> All 36 catalogue products are quality checked with authentic Indian materials.
+            </div>
+          </aside>
+
+          <!-- Main Product Grid Area -->
+          <div class="products-main-area">
+            
+            <!-- Top Toolbar -->
+            <div class="catalogue-top-bar">
+              <div class="results-info">
+                Showing <strong id="results-count">36</strong> products in <strong id="current-category-heading">All Lifestyle Products</strong>
+              </div>
+
+              <div class="sort-group">
+                <label for="sort-select">Sort By:</label>
+                <select id="sort-select" class="sort-select">
+                  <option value="popular">Popularity & Rating</option>
+                  <option value="price_asc">Price: Low to High</option>
+                  <option value="price_desc">Price: High to Low</option>
+                  <option value="discount">Biggest Discount</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="newest">New Arrivals</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Products Grid Container -->
+            <div class="products-grid" id="products-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 7. Footer -->
+  <footer class="main-footer" id="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <div class="logo-icon-wrap" style="width: 36px; height: 36px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+              </svg>
+            </div>
+            <span style="font-size: 1.3rem; font-weight: 800; color: var(--primary);">ShopEase</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;">
+            ShopEase is India's premier Meesho-inspired lifestyle and ethnic marketplace connecting conscious shoppers with genuine craftspeople, local weavers, organic beauty producers, and home decor artisans.
+          </p>
+          <div style="display: flex; gap: 0.5rem; font-size: 0.8rem; font-weight: 700; color: var(--success);">
+            <span>🇮🇳 Made with pride in India</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog-section" onclick="window.appCategory('Women\'s Fashion')">Women's Fashion</a></li>
+            <li><a href="#catalog-section" onclick="window.appCategory('Jewellery & Accessories')">Jewellery & Accessories</a></li>
+            <li><a href="#catalog-section" onclick="window.appCategory('Beauty & Makeup')">Beauty & Makeup</a></li>
+            <li><a href="#catalog-section" onclick="window.appCategory('Plants & Gardening')">Plants & Gardening</a></li>
+            <li><a href="#catalog-section" onclick="window.appCategory('DIY & Crafts')">DIY & Crafts</a></li>
+            <li><a href="#catalog-section" onclick="window.appCategory('Home Decor')">Home Decor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="document.getElementById('orders-btn').click()">Track Order Status</a></li>
+            <li><a href="javascript:void(0)">7-Day Return Policy</a></li>
+            <li><a href="javascript:void(0)">Shipping & Pincode Coverage</a></li>
+            <li><a href="javascript:void(0)">Supplier Verification Standards</a></li>
+            <li><a href="javascript:void(0)">Reseller Wholesale Benefits</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safe & Secure Payments</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+            We accept Cash on Delivery (COD), UPI (GPay, PhonePe, Paytm), RuPay, Visa, MasterCard & Net Banking with 256-bit bank-grade encryption.
+          </p>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="badge badge-trust">💵 Cash on Delivery</span>
+            <span class="badge badge-trust">📱 UPI Instant</span>
+            <span class="badge badge-trust">💳 RuPay / Cards</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 ShopEase Marketplace India. All rights reserved. Inspired by Meesho lifestyle catalogue.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Terms of Service</a>
+          <a href="javascript:void(0)">Supplier Code of Conduct</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & DRAWERS ================= -->
+
+  <!-- 1. Product Detail & Confirmation Modal -->
+  <div class="modal-overlay" id="modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-container">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">✕</button>
+      <div id="modal-container">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Shopping Cart Drawer -->
+  <div class="drawer-overlay" id="cart-drawer-overlay" aria-hidden="true">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🛍️</span> My Shopping Cart
+        </h3>
+        <button type="button" class="btn-icon" id="close-cart-drawer-btn" aria-label="Close Cart">✕</button>
+      </div>
+
+      <div class="drawer-body" id="cart-drawer-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="drawer-footer">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.85rem;">
+          <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">Subtotal (Incl. Taxes):</span>
+          <span style="font-size: 1.3rem; font-weight: 800; color: var(--text-primary);" id="cart-drawer-subtotal">₹0</span>
+        </div>
+        <button type="button" class="btn btn-primary btn-block btn-lg" id="btn-proceed-checkout">
+          Proceed to Checkout ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Wishlist Drawer -->
+  <div class="drawer-overlay" id="wishlist-drawer-overlay" aria-hidden="true">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+          <span>💖</span> My Saved Wishlist
+        </h3>
+        <button type="button" class="btn-icon" id="close-wishlist-drawer-btn" aria-label="Close Wishlist">✕</button>
+      </div>
+
+      <div class="drawer-body" id="wishlist-drawer-body">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Checkout & Order Placement Modal (PostgreSQL Transaction) -->
+  <div class="modal-overlay" id="checkout-modal-overlay" aria-hidden="true" role="dialog">
+    <div class="modal-container" style="max-width: 680px;">
+      <button type="button" class="modal-close-btn" id="close-checkout-modal-btn" aria-label="Close Checkout">✕</button>
+      
+      <div class="checkout-modal-body">
+        <h2 class="checkout-heading">
+          <span>🛍️</span> Complete Delivery & Place Order
+        </h2>
+
+        <form id="checkout-form">
+          
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary);">
+            1. Shipping Address Details
+          </h4>
+
+          <div class="checkout-form-grid">
+            <div class="form-group">
+              <label for="cust-name">Full Name *</label>
+              <input type="text" id="cust-name" name="customer_name" placeholder="e.g. Priya Sharma" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cust-phone">10-Digit Mobile Number (+91) *</label>
+              <input type="tel" id="cust-phone" name="customer_phone" placeholder="9876543210" pattern="[0-9]{10}" maxlength="10" required />
+            </div>
+
+            <div class="form-group form-full-col">
+              <label for="cust-email">Email Address (For receipt)</label>
+              <input type="email" id="cust-email" name="customer_email" placeholder="priya.sharma@example.com" />
+            </div>
+
+            <div class="form-group form-full-col">
+              <label for="cust-address">Flat, House No., Building, Apartment *</label>
+              <input type="text" id="cust-address" name="address" placeholder="Flat 402, Green Glen Residency, Outer Ring Road" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cust-pincode">Pincode *</label>
+              <input type="text" id="cust-pincode" name="pincode" placeholder="560103" maxlength="6" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cust-city">City / Town *</label>
+              <input type="text" id="cust-city" name="city" placeholder="Bengaluru" required />
+            </div>
+
+            <div class="form-group form-full-col">
+              <label for="cust-state">State *</label>
+              <select id="cust-state" name="state" required>
+                <option value="">Select State</option>
+                <option value="Karnataka" selected>Karnataka</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi NCT</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Assam">Assam</option>
+              </select>
+            </div>
+          </div>
+
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.85rem; color: var(--primary);">
+            2. Payment Method
+          </h4>
+
+          <div class="payment-methods-grid">
+            <label class="payment-method-card selected">
+              <input type="radio" name="payment_method" value="Cash on Delivery" checked />
+              <div class="pm-info">
+                <span class="pm-name">💵 Cash on Delivery (COD)</span>
+                <span class="pm-desc">Pay upon delivery with cash or UPI to delivery agent</span>
+              </div>
+              <span class="badge badge-trust" style="margin-left: auto;">Most Popular</span>
+            </label>
+
+            <label class="payment-method-card">
+              <input type="radio" name="payment_method" value="UPI" />
+              <div class="pm-info">
+                <span class="pm-name">📱 UPI (Google Pay, PhonePe, Paytm, BHIM)</span>
+                <span class="pm-desc">Instant payment via any UPI application</span>
+              </div>
+            </label>
+
+            <label class="payment-method-card">
+              <input type="radio" name="payment_method" value="Credit/Debit Card" />
+              <div class="pm-info">
+                <span class="pm-name">💳 Credit / Debit Card (Visa, RuPay, MasterCard)</span>
+                <span class="pm-desc">Secured by 256-bit bank encryption</span>
+              </div>
+            </label>
+          </div>
+
+          <!-- Total Summary & Submit -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Items: <strong id="checkout-items-count">0</strong> | Delivery: <strong style="color: var(--success);">FREE</strong></div>
+              <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary);" id="checkout-payable-amount">₹0</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-submit-order">
+              ⚡ Confirm & Place Order
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Script Module -->
+  <script type="module" src="/js/app.js"></script>
+
+</body>
+</html>
