@@ -9,16 +9,19 @@ function observabilityMiddleware(req, res, next) {
     const elapsedHrTime = process.hrtime(startHrTime);
     const durationMs = elapsedHrTime[0] * 1000 + elapsedHrTime[1] / 1e6;
 
-    // Only record and log API requests to avoid polluting metrics with static files
+    // Only record and log genuine application API requests
+    // Exclude administrative endpoints (/api/faults) from metricsTracker to prevent artificial skew
     if (req.path.startsWith('/api')) {
       const status = res.statusCode;
 
-      metricsTracker.recordRequest({
-        method: req.method,
-        path: req.path,
-        status: status,
-        durationMs: durationMs
-      });
+      if (!req.path.startsWith('/api/faults') && !req.path.startsWith('/api/remediation')) {
+        metricsTracker.recordRequest({
+          method: req.method,
+          path: req.path,
+          status: status,
+          durationMs: durationMs
+        });
+      }
 
       // Determine severity
       let severity = 'INFO';
@@ -32,17 +35,22 @@ function observabilityMiddleware(req, res, next) {
       else if (req.path.includes('/orders')) service = 'order-service';
       else if (req.path.includes('/observability')) service = 'observability-service';
       else if (req.path.includes('/faults')) service = 'fault-manager';
+      else if (req.path.includes('/remediation')) service = 'remediation-engine';
 
-      logger.log(severity, service, `${req.method} ${req.originalUrl || req.path} -> ${status} (${durationMs.toFixed(1)}ms)`, {
-        endpoint: req.path,
-        status: status,
-        durationMs: durationMs,
-        extra: {
-          method: req.method,
-          query: req.query,
-          faultInjected: res.locals && res.locals.faultInjected ? true : false
-        }
-      });
+      // Exempt routine health and observability polling from polluting the ring buffer unless an error occurred
+      const isRoutineTelemetry = (req.path.startsWith('/api/observability') || req.path === '/api/health' || req.path.startsWith('/api/faults') || req.path.startsWith('/api/remediation')) && status < 400;
+      if (!isRoutineTelemetry) {
+        logger.log(severity, service, `${req.method} ${req.originalUrl || req.path} -> ${status} (${durationMs.toFixed(1)}ms)`, {
+          endpoint: req.path,
+          status: status,
+          durationMs: durationMs,
+          extra: {
+            method: req.method,
+            query: req.query,
+            faultInjected: res.locals && res.locals.faultInjected ? true : false
+          }
+        });
+      }
     }
   });
 
